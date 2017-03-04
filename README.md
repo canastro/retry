@@ -1,5 +1,5 @@
 ![build status](https://travis-ci.org/canastro/retry.svg?branch=master)
-[![npm version](https://badge.fury.io/js/retry.svg)](https://badge.fury.io/js/retry)
+[![npm version](https://badge.fury.io/js/%40canastro%2Fretry.svg)](https://badge.fury.io/js/%40canastro%2Fretry)
 [![codecov](https://codecov.io/gh/canastro/retry/branch/master/graph/badge.svg)](https://codecov.io/gh/canastro/retry)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
