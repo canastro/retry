@@ -4,7 +4,7 @@
   "description": "Retry strategy",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "xo && nyc ava"
   },
   "keywords": [
     "retry"
@@ -12,6 +12,14 @@
   "author": "Ricardo Canastro",
   "license": "ISC",
   "xo": {
-    "space": 4
+    "space": 4,
+    "globals": [
+      "performance"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "nyc": "^10.1.2",
+    "sinon": "^1.17.7"
   }
 }

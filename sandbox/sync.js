@@ -1,6 +1,6 @@
 const retry = require('../');
 
-const targetSync = (min, max) => () => Math.random() * (max - min) + min;
+const targetSync = (min, max) => () => (Math.random() * (max - min)) + min;
 
 const isResolved = result => result > 19;
 

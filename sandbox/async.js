@@ -3,7 +3,7 @@ const retry = require('../');
 const targetPromise = (min, max) => () => new Promise(resolve => {
     setTimeout(() => {
         console.log('target execution');
-        resolve(Math.random() * (max - min) + min);
+        resolve((Math.random() * (max - min)) + min);
     }, 500);
 });
 
