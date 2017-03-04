@@ -1,0 +1,17 @@
+{
+  "name": "retry",
+  "version": "0.0.1",
+  "description": "Retry strategy",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "retry"
+  ],
+  "author": "Ricardo Canastro",
+  "license": "ISC",
+  "xo": {
+    "space": 4
+  }
+}
