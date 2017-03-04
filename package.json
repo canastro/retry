@@ -4,8 +4,8 @@
   "description": "Retry strategy",
   "main": "index.js",
   "scripts": {
-    "test": "xo && nyc ava",
-    "codecov": "nyc report --reporter=lcov | codecov"
+    "test": "xo && nyc --reporter=lcov ava",
+    "codecov": "cat coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js"
   },
   "keywords": [
     "retry"
