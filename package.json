@@ -1,6 +1,6 @@
 {
   "name": "@canastro/retry",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Retry strategy",
   "main": "index.js",
   "scripts": {

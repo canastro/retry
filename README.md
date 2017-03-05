@@ -4,7 +4,12 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 # Retry
-Naive implementation of a retry system
+Naive implementation of a retry system.
+
+# Features
+* Max attempts
+* Add delay between retries
+* Callback to interrupt retries
 
 # Installation
 ```
@@ -14,9 +19,10 @@ npm install --save @canastro/retry
 # Usage
 
 ```js
+const retry = require('@canastro/retry');
 const callback = (min, max) => () => (Math.random() * (max - min)) + min;
 
-const assertResult = result => result > 19;
+const isResolved = result => result > 19;
 
 const options = {
     maxAttempts: 5,
@@ -29,7 +35,7 @@ const options = {
  * to get a result higher then 19, having a delay
  * of 1000ms between each execution
  */
-retry(callback(2, 20), options, assertResult)
+retry(callback(2, 20), options, isResolved)
     .then(result => {
         console.log('result: ', result);
     })
@@ -37,6 +43,8 @@ retry(callback(2, 20), options, assertResult)
         console.log('error');
     });
 ```
+
+PS: Check sandbox for more examples, you can try them by running `node sandbox/#filename#`
 
 
 ### Parameters
@@ -46,4 +54,9 @@ retry(callback(2, 20), options, assertResult)
 | options | Object | {} | User's options |
 | [options.maxAttempts] | Number |  10 | Number of max attempts |
 | [options.intervalTimeout] | Number | 0ms | Number of milliseconds to wait before retrying |
-| assertResult | Function | () => true | Assertation function to be used as a stop condition |
+| isResolved | Function | () => true | Function to be used as a stop condition |
+
+### Returns
+* If a isResolved function is provided it will return a fulfilled promise when this returns true;
+* If no isResolved was given it will return true once the provided callback is correctly fulfilled;
+* It will return a rejected promise the max attempts was reached

@@ -25,7 +25,7 @@ test.cb('should reject while using the configured value for maxAttempts', t => {
     });
 });
 
-test.cb('should resolve after 3 attempts', t => {
+test.cb('should resolve after 3 attempts because original promise is resolved', t => {
     t.plan(2);
 
     const target = sinon.stub();
@@ -33,6 +33,23 @@ test.cb('should resolve after 3 attempts', t => {
     target.onCall(2).returns(Promise.resolve('DUMMY-RESPONSE'));
 
     retry(target, {maxAttempts: 5}).then(result => {
+        t.is(result, 'DUMMY-RESPONSE');
+        t.is(target.callCount, 3);
+        t.end();
+    });
+});
+
+test.cb('should resolve after 3 attempts because original promise result matches the assertation', t => {
+    t.plan(2);
+
+    const target = sinon.stub();
+    target.returns(Promise.resolve('DUMMY-RESPONSE'));
+
+    const assertationStub = sinon.stub();
+    assertationStub.returns(false);
+    assertationStub.onCall(2).returns(true);
+
+    retry(target, {maxAttempts: 5}, assertationStub).then(result => {
         t.is(result, 'DUMMY-RESPONSE');
         t.is(target.callCount, 3);
         t.end();
