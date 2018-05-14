@@ -20,9 +20,9 @@ npm install --save @canastro/retry
 
 ```js
 const retry = require('@canastro/retry');
-const callback = (min, max) => () => (Math.random() * (max - min)) + min;
+const generateNumber = (min, max) => () => (Math.random() * (max - min)) + min;
 
-const isResolved = result => result > 19;
+const isBiggerThanNineteen = result => result > 19;
 
 const options = {
     maxAttempts: 5,
@@ -35,7 +35,7 @@ const options = {
  * to get a result higher then 19, having a delay
  * of 1000ms between each execution
  */
-retry(callback(2, 20), options, isResolved)
+retry(generateNumber(2, 20), options, isBiggerThanNineteen)
     .then(result => {
         console.log('result: ', result);
     })
@@ -57,6 +57,6 @@ PS: Check sandbox for more examples, you can try them by running `node sandbox/#
 | isResolved | Function | () => true | Function to be used as a stop condition |
 
 ### Returns
-* If a isResolved function is provided it will return a fulfilled promise when this returns true;
-* If no isResolved was given it will return true once the provided callback is correctly fulfilled;
+* If a `isResolved` function is provided it will return a fulfilled promise when this returns true;
+* If no `isResolved` was given it will return true once the provided callback is correctly fulfilled;
 * It will return a rejected promise the max attempts was reached
